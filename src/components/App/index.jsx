@@ -1,27 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './styles.css'
-import axios from 'axios'
+
 
 // === Modules
-import List from '../List'
+import Project from '../Project'
+import { useDispatch } from 'react-redux'
+import { getLists } from '../../actions/list';
 
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  const Lists = axios({
-    method: 'get',
-    url: 'http://localhost:3002/lists',
-  })
-    .then(function (response) {
-      console.log(response.data);
-    })
-    .catch(function (error) {
-      console.log(error);})
+  const dispatch = useDispatch();
+  console.log('dans APP');
+  
+  useEffect(() => {
+    console.log('useEffect');
+    dispatch(getLists());
+  }, []);
+
 
   return (
     <div className="App">
-      <List />
+      <Project />
     </div>
   );
 };
