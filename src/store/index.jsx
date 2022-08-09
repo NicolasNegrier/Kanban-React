@@ -2,8 +2,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from '../reducers';
 import lists from '../middlewares/lists';
 
+const initialState = {list:[]};
+
 export const store = configureStore({
   reducer: rootReducer, 
+  initialState, 
   middleware: [lists],
 });
 

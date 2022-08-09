@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react'
-import './styles.css'
+import {  useEffect, useLayoutEffect, useState } from 'react';
+import './styles.css';
 
 
 // === Modules
-import Project from '../Project'
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 import { getLists } from '../../actions/list';
-
+import Project from '../Project';
 
 function App() {
 

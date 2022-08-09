@@ -9,18 +9,19 @@ export const getLists = () => ({
     type: GET_LISTS,
 });
 
-export const setLists = (data, projectId) => ({
+export const setLists = (project, projectId, lists) => ({
     type: SET_LISTS,
-    data,
+    project,
     projectId,
+    lists,
 });
 
 export const inputLists = (value) => ({
     type: INPUT_LIST,
     payload: value,
-})
+});
 
-export const addList = () => ({
+export const addList = (data) => ({
     type: ADD_LIST,
-
-})
+    data,
+});
