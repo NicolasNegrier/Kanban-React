@@ -1,5 +1,7 @@
 .lists__items {
     display: flex;
     margin-top: 2rem;
+    flex-wrap: wrap;
+    flex-grow: 1;
 }
 

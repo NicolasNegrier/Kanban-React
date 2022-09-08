@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from '../reducers';
-import lists from '../middlewares/lists';
-
-const initialState = {list:[]};
+import listSlice from '../reducers/list';
+import listsMiddleware from '../middlewares/lists';
 
 export const store = configureStore({
-  reducer: rootReducer, 
-  initialState, 
-  middleware: [lists],
+  reducer: {
+    lists: listSlice.reducer
+  },
+  middleware: [listsMiddleware],
 });
 
 
@@ -26,4 +26,4 @@ export const store = configureStore({
 
 // const store = createStore(reducer, enhancers);
 
-// export default store;
+export default store;

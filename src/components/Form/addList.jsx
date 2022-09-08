@@ -1,18 +1,18 @@
 // == Import
 // import './styles.css';
 import { useDispatch, useSelector } from "react-redux";
-import { addList, inputLists } from '../../actions/list';
+import { addList} from '../../actions/list';
+import { setInputList } from "../../reducers/list";
 
 
 // == Composant
 const AddList = () => {
 
-    const inputValue = useSelector((state) => state.list.addListInput);
-    console.log(inputValue);
+    const inputValue = useSelector((state) => state.lists.addListInput);
     const dispatch = useDispatch();
 
     const handleChange = (evt) => {
-        dispatch(inputLists(evt.target.value));
+        dispatch(setInputList(evt.target.value));
     }
 
     const handleSubmit = (evt) => {
@@ -23,7 +23,7 @@ const AddList = () => {
 	return (
 		
 		<form onSubmit={handleSubmit}>
-            <input type="text" value={inputValue} placeholder='nom de la nouvelle liste' onChange={handleChange}/>
+            <input type="text" name="addListInput" value={inputValue} placeholder='nom de la nouvelle liste' onChange={handleChange}/>
             <button>Ajouter la liste</button>
         </form>
 	);
