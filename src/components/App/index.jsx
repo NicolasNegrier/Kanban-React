@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getLists } from '../../actions/list';
 import Project from '../Project';
 import Header from '../Header';
+import { getCards } from '../../actions/card';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
   useEffect(() => {
     console.log('useEffect');
     dispatch(getLists());
+    dispatch(getCards());
   }, []);
 
 

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { INPUT_LIST, SET_LISTS, ADD_LIST } from '../actions/list';
+// import { INPUT_LIST, SET_LISTS, ADD_LIST } from '../actions/list';
 
 const listSlice = createSlice({
 	name: "lists",
@@ -37,40 +37,5 @@ const listSlice = createSlice({
 });
 
 export const { setLists, setInputList, setList, delList } = listSlice.actions;
-
-// export const initialState = {
-// 	projectId: null,
-// 	project: [],
-// 	lists: [],
-// 	addListInput: '',
-// };
-
-// const reducer = (state = initialState, action = {}) => {
-// 	console.log('REDUCER');
-// 	switch (action.type) {
-// 		case SET_LISTS:
-// 			return {
-// 				...state,
-// 				project: action.project,
-// 				projectId: action.projectId,
-// 				lists: action.lists,
-// 			};
-
-// 		case INPUT_LIST:
-// 			return {
-// 				...state,
-// 				addListInput: action.payload,
-// 			};
-
-// 		case ADD_LIST:
-// 			return {
-// 				...state,
-// 				lists: action.data,
-// 			};
-		
-// 		default:
-// 			return state;
-// 	}
-// };
 
 export default listSlice;

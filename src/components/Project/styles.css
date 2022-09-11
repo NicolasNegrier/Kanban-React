@@ -1,7 +1,13 @@
+.lists {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
 .lists__items {
     display: flex;
     margin-top: 2rem;
     flex-wrap: wrap;
-    flex-grow: 1;
 }
 
