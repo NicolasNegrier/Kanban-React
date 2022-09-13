@@ -9,6 +9,7 @@ const cardSlice = createSlice({
 		position: null,
 		listId: '',
 		inputAddCard: {},
+		addCardActive: false,
 	},
 
 	reducers: {
@@ -21,18 +22,22 @@ const cardSlice = createSlice({
 		},
 
 		setCard: (state, action) => {
-			console.log(action.payload);
 			state.cards.push(action.payload);
 			state.inputAddCard = {};
 		},
 
-		// delCard: (state, action) => {
-		// 	state.lists = state.lists.filter(list => list.lst_id !== Number(action.payload));
-		// }
+		addCardToggle: (state, action) => {
+			state.addCardActive = !state.addCardActive;
+			state.listId = action.payload;
+		},
+
+		delCard: (state, action) => {
+			state.cards = state.cards.filter(card => card.crd_id !== Number(action.payload));
+		}
 	}
 });
 
-export const { setCards, setInputCard, setCard } = cardSlice.actions;
+export const { setCards, setInputCard, setCard, addCardToggle, delCard } = cardSlice.actions;
 
 export default cardSlice;
 

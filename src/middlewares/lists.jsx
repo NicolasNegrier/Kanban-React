@@ -16,7 +16,7 @@ const lists = (store) => (next) => async (action) => {
             const project = data;
             const lists = data.lists;
             store.dispatch(setLists(project, projectId, lists ));
-            console.log(data);
+            // console.log(data);
             break;
             }
             catch(error) {

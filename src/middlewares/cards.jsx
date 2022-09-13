@@ -1,6 +1,6 @@
 import axios from "axios";
-import { ADD_CARD, GET_CARDS } from "../actions/card";
-import { setCard, setCards } from "../reducers/card";
+import { ADD_CARD, DELETE_CARD, GET_CARDS } from "../actions/card";
+import { delCard, setCard, setCards } from "../reducers/card";
 
 
 
@@ -14,7 +14,7 @@ const cards = (store) => (next) => async (action) => {
                 );
             
             store.dispatch(setCards(data));
-            console.log(data);
+            // console.log(data);
             break;
             }
             catch(error) {
@@ -33,7 +33,7 @@ const cards = (store) => (next) => async (action) => {
                     lst_id: listId,
                 })
             
-                console.log('RESULTAT PUT NEW CARD', data);
+                // console.log('RESULTAT PUT NEW CARD', data);
                 store.dispatch(setCard(data.data));
                 break;
             }
@@ -43,21 +43,21 @@ const cards = (store) => (next) => async (action) => {
             }
         }
 
-        // case DELETE_LIST: {
-        //     try {
-        //         const listId = action.listId;
+        case DELETE_CARD: {
+            try {
+                const cardId = action.cardId;
 
-        //         const data = await axios.delete(`http://localhost:3002/lists/${ listId }`)
+                const data = await axios.delete(`http://localhost:3002/cards/${ cardId }`)
             
-        //         // console.log('RESULTAT DELETE LIST', data);
-        //         store.dispatch(delList(listId));
-        //         break;
-        //     }
-        //     catch(error) {
-        //         console.log(error);
-        //         break;
-        //     }
-        // }
+                // console.log('RESULTAT DELETE LIST', data);
+                store.dispatch(delCard(cardId));
+                break;
+            }
+            catch(error) {
+                console.log(error);
+                break;
+            }
+        }
 
         default:
             next(action);

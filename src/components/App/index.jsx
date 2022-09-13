@@ -12,12 +12,11 @@ import { getCards } from '../../actions/card';
 function App() {
 
   const dispatch = useDispatch();
-  const lists = useSelector(state => state.lists.lists)
-  const projectId = useSelector(state => state.lists);
+  // const lists = useSelector(state => state.lists.lists)
+  // const projectId = useSelector(state => state.lists);
   // console.log('projectid dans APP==>',projectId);
   
   useEffect(() => {
-    console.log('useEffect');
     dispatch(getLists());
     dispatch(getCards());
   }, []);

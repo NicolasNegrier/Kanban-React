@@ -2,14 +2,13 @@
 import './styles.css';
 import { useSelector } from "react-redux";
 import List from "../List";
-import AddList from '../Form/addList';
 
 
 // == Composant
 const Project = () => {
 
-	const projectId = useSelector(state => state.lists.projectId);
-	const projectName = useSelector(state => state.lists.projectName);
+	// const projectId = useSelector(state => state.lists.projectId);
+	// const projectName = useSelector(state => state.lists.projectName);
 	const lists = useSelector(state => state.lists.lists);
 
 	return (
