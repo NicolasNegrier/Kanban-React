@@ -57,9 +57,7 @@ const List = ({name, id}) => {
 				</form> :
 				<button onClick={ handlerAddCard }>Ajouter une tache</button>
 			}
-			
-            
-			<Cards id={ id } />
+			<Cards id={ id } />		
         </div>
 	);
 

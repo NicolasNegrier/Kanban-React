@@ -1,6 +1,7 @@
 // == Import
 import './styles.css';
 import { useSelector } from "react-redux";
+import { Droppable } from 'react-beautiful-dnd';
 import Card from './Card';
 
 
@@ -8,12 +9,16 @@ import Card from './Card';
 const Cards = ({ id }) => {
 
 	const cards = useSelector(state => state.cards.cards);
+	console.log(id);
 
 	return (
-		
-		<div className='cards'>
-				{cards.map((card) => ( card.crd_lst_id === id && <Card key={card.crd_id} cardId={ card.crd_id } description={ card.crd_description } />))} 
-		</div>
+		<Droppable droppableId={id.toString()}>
+			{provider => (
+				<div className='cards' {...provider.droppableProps} ref={provider.innerRef}>
+					{cards.map((card, index) => ( card.crd_lst_id === id && <Card key={card.crd_id} cardId={ card.crd_id } index={index} description={ card.crd_description } />))} 
+				</div>
+			)}
+		</Droppable>
 	);
 
 };
