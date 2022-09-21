@@ -6,16 +6,16 @@ import Card from './Card';
 
 
 // == Composant
-const Cards = ({ id }) => {
+const Cards = ({ listId, cards }) => {
 
-	const cards = useSelector(state => state.cards.cards);
-	console.log(id);
+	// const cards = useSelector(state => state.cards.cards);
 
 	return (
-		<Droppable droppableId={id.toString()}>
+		<Droppable droppableId={listId.toString()}>
 			{provider => (
 				<div className='cards' {...provider.droppableProps} ref={provider.innerRef}>
-					{cards.map((card, index) => ( card.crd_lst_id === id && <Card key={card.crd_id} cardId={ card.crd_id } index={index} description={ card.crd_description } />))} 
+					{cards.map((card, index) => ( <Card key={card.crd_id} cardId={ card.crd_id } index={index} description={ card.crd_description } />))} 
+					{provider.placeholder}
 				</div>
 			)}
 		</Droppable>

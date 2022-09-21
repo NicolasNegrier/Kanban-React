@@ -32,10 +32,14 @@ const listSlice = createSlice({
 
 		delList: (state, action) => {
 			state.lists = state.lists.filter(list => list.lst_id !== Number(action.payload));
+		},
+
+		movList: (state, action) => {
+			state.lists = action.payload;
 		}
 	}
 });
 
-export const { setLists, setInputList, setList, delList } = listSlice.actions;
+export const { setLists, setInputList, setList, delList, movList } = listSlice.actions;
 
 export default listSlice;

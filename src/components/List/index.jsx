@@ -9,13 +9,13 @@ import Cards from '../Cards';
 
 
 // == Composant
-const List = ({name, id}) => {
+const List = ({name, cards, listId}) => {
 
 	const dispatch = useDispatch();
 	const valueInputCard = useSelector(state => state.cards.inputAddCard);
-	const cards = useSelector(state => state.cards.cards);
+	// const cards = useSelector(state => state.cards.cards);
 	const addCardActive = useSelector(state => state.cards.addCardActive);
-	const listId = useSelector(state => state.cards.listId);
+	// const listId = useSelector(state => state.cards.listId);
 
 
 	const handleDelete = (event) => {
@@ -44,20 +44,20 @@ const List = ({name, id}) => {
 
 	return (
 		
-		<div id={id} className="list">
+		<div id={listId} className="list">
 			<header className='list__header'>
 				<h2 className='list__title' >{name}</h2>
 				<div className='list__gestIcons' onClick={ handleDelete } ><Icon name='trash' /></div>
 			</header>
 
-			{ (addCardActive && (Number(listId) === id) ) ? 
+			{ addCardActive ? 
 				<form className='formCard' onSubmit={ submitCardHandler }>
-					<input type='text' className='addCard' value={ valueInputCard.name === `addInputCard${id}` ? valueInputCard.value : '' } name={`addInputCard${id}`} placeholder='Ajouter une tache' onChange={ addCardHandler } ></input>
+					<input type='text' className='addCard' value={ valueInputCard.name === `addInputCard${listId}` ? valueInputCard.value : '' } name={`addInputCard${listId}`} placeholder='Ajouter une tache' onChange={ addCardHandler } ></input>
 					<button><Icon name='add square' /></button>
 				</form> :
 				<button onClick={ handlerAddCard }>Ajouter une tache</button>
 			}
-			<Cards id={ id } />		
+			<Cards listId={ listId } cards= { cards } />		
         </div>
 	);
 
