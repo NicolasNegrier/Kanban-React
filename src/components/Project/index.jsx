@@ -34,6 +34,7 @@ const Project = () => {
 		if (start === finish) {
 			// Récuperation de la liste où est modifié l'ordre des taches
 		const listStart = lists.find(list => list.lst_id === Number(source.droppableId));
+		const listStartIndex = lists.indexOf(listStart);
 		// Creation d'une copie du tableau des taches (cards) de la liste en question
 		const cardsList = listStart.cards.map(cards => cards);
 		// Récupération de la tache (card) qui est deplacée
@@ -53,16 +54,20 @@ const Project = () => {
 		// Copie du tableau des liste sans la liste cible
 		const listDel = lists.filter(list => list.lst_id !== Number(source.droppableId));
 		// Insertion de la liste avec le nouvel ordre de tache dans la copie du tableau des listes
-		const newLists = listDel.push(newList);
+		const newLists = listDel.splice(listStartIndex, 0, newList);
+		// const newLists = listDel.push(newList);
 		// Demande d'intention envoyé au reducer afin de sauvegarder le nouveau tableau des listes
 		dispatch(movList(listDel));
 		return
 		}
 
+		
 		// Récuperation de la liste où est modifié l'ordre des taches
 		const listStart = lists.find(list => list.lst_id === Number(start));
+		const listStartIndex = lists.indexOf(listStart);
 		// Récuperation de la liste où est modifié l'ordre des taches
 		const listFinish = lists.find(list => list.lst_id === Number(finish));
+		const listFinishIndex = lists.indexOf(listFinish);
 		// Creation d'une copie du tableau des taches (cards) de la liste depart
 		const cardsListStart = listStart.cards.map(cards => cards);
 		// Creation d'une copie du tableau des taches (cards) de la liste destination
@@ -95,12 +100,28 @@ const Project = () => {
 
 
 		// Copie du tableau des liste sans la liste cible
-		const listStartDel = lists.filter(list => list.lst_id !== Number(start));
-		const listFinishDel = listStartDel.filter(list => list.lst_id !== Number(finish));
-		// Insertion de la liste avec le nouvel ordre de tache dans la copie du tableau des listes
-		const newLists = listFinishDel.push(newListStart, newListFinish);
+		// const listStartDel = lists.filter(list => list.lst_id !== Number(start));
+		// const listFinishDel = listStartDel.filter(list => list.lst_id !== Number(finish));
+
+		// Creation d'une copie du tableau des listes avec les nouvelles position des taches
+		const newListsArray = lists.slice();
+
+		console.log(newListsArray);
+		// Suppression de la liste de depart de la tache et insertion de la nouvelle liste avec le nouveau tableau des taches (tache supprimée)
+		const newArrayListStart = newListsArray.splice(listStartIndex, 1, newListStart);
+		// Suppression de la liste d'arrivée de la tache et insertion de la nouvelle liste avec le nouveau tableau des taches (tache ajoutée)
+		const newArrayListFinish = newListsArray.splice(listFinishIndex, 1, newListFinish);		
+		
+		// console.log(listStartDel);
+		// console.log(listFinishDel);
+		console.log(newListsArray);
+		console.log(newListStart);
+		console.log(newListFinish);
+		console.log(newArrayListStart);
+		console.log(newArrayListFinish);
+		console.log(listFinishIndex);
 		// Demande d'intention envoyé au reducer afin de sauvegarder le nouveau tableau des listes
-		dispatch(movList(listFinishDel));
+		dispatch(movList(newListsArray));
 
 		// console.log(listDel);
 		// console.log('newLists===>',newLists);
@@ -111,7 +132,7 @@ const Project = () => {
 		// console.log(destination);
 		// console.log(source);
 		// console.log(draggableId);
-		console.log(lists);
+		// console.log(lists);
 		
 	  };
 	
